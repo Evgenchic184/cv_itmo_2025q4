@@ -39,18 +39,19 @@ def compare_performance(image, iterations=10):
 
 if __name__ == "__main__":
     image = cv2.imread('input.png', cv2.IMREAD_GRAYSCALE)
-
-    dilated_cv = dilate_opencv(image)
-    dilated_native = dilate_native(image)
+    _, binary = cv2.threshold(image,127, 255, cv2.THRESH_BINARY)
+    cv2.imwrite('binary_input.png', binary)
+    dilated_cv = dilate_opencv(binary)
+    dilated_native = dilate_native(binary)
 
     print(f"diff by methods: {abs(dilated_cv - dilated_native).sum()}")
 
     cv2.imwrite('dilated_opencv.png', dilated_cv)
     cv2.imwrite('dilated_native.png', dilated_native)
 
-    times_cv, times_native = compare_performance(image)
-    print(f"OpenCV dilation: {np.mean(times_cv):.6f} ± {np.std(times_cv):.6f} sec")
-    print(f"Native dilation: {np.mean(times_native):.6f} ± {np.std(times_native):.6f} sec")
+    # times_cv, times_native = compare_performance(image)
+    # print(f"OpenCV dilation: {np.mean(times_cv):.6f} ± {np.std(times_cv):.6f} sec")
+    # print(f"Native dilation: {np.mean(times_native):.6f} ± {np.std(times_native):.6f} sec")
 
 
 
