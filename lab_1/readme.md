@@ -10,7 +10,7 @@
 4) Запись результата в выходное изображение
 
 Входное изображение:    
-![input.png](input.png)  
+![binary_input.png](binary_input.png)  
 Дилатация opencv:  
 ![dilated_opencv.png](dilated_opencv.png)  
 Дилатация нативная:   
